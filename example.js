@@ -35,7 +35,7 @@ for (var i = process.argv.length - 1; i >= 0; i--) {*/
 	var str = buffer.toString();
 	console.log(str.split('\n').length - 1);*/
 /*};
-*/
+ */
 
 /*
 var fs = require('fs');
@@ -48,18 +48,21 @@ fs.readFile(process.argv[2], function (err, data) {
 
 });*/
 
-
 /*console.log(process.argv);*/
+
+
+
 var fs = require('fs');
-fs.readdir(process.argv[2], function(err, list){
-	if (err) {throw err};
-	var filter = process.argv[3];
+var path = require('path');
 
-	for (var i = 0; i < list.length; i++) {
-		if (list[i].indexOf('.'+ filter)>0) {
-			console.log(list[i]);
+fs.readdir(process.argv[2], function(err, list) {
+	if (err)
+		throw err;
 
+	list.forEach(function(file) {
+		if (path.extname(file) === process.argv[3]) {
+			console.log(file);
 		};
-	};
+	});	
 
-})
+});
